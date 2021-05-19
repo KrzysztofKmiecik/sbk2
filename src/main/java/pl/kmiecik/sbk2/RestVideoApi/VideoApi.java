@@ -1,6 +1,7 @@
 package pl.kmiecik.sbk2.RestVideoApi;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +22,14 @@ public class VideoApi {
 
     }
 
-    @GetMapping
+    @GetMapping(produces = {
+            MediaType.APPLICATION_JSON_VALUE,
+            MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<List<Video>> getvideos() {
         return new ResponseEntity<List<Video>>(videoList, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<Video> getVideoById(@PathVariable Long id) {
         Optional<Video> myVideo = videoList.stream().filter(video -> video.id == id).findFirst();
 
