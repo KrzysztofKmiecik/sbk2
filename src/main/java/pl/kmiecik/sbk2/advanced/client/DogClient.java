@@ -41,7 +41,7 @@ public class DogClient {
         Stream.of(exchange.getBody()).forEach(System.out::println);
 
     }
-    @EventListener(ApplicationReadyEvent.class)
+  //  @EventListener(ApplicationReadyEvent.class)
     private void addDog() {
         Dog dog = new Dog("Pyska", "beaver");
 
